@@ -109,3 +109,39 @@ ssize_t readline(int fd, void *vptr, size_t maxlen)
     *ptr = 0;
     return n;
 }
+
+
+int  Accept(int fd, struct sockaddr * addr, socklen_t *len )
+{
+    int n;
+    for(;;)
+    {
+        n = accept(fd, addr, len);
+        if( n <0  )
+        {
+            if( errno == EPROTO || errno == ECONNABORTED )
+                continue;
+            else
+                err_sys("accept error");
+        }
+        return n;
+    }
+}
+
+void Bind(int fd, struct sockaddr * addr, socklen_t len )
+{
+     if( 0 != bind(fd, addr, len ))
+         err_sys("bind error");
+}
+
+void Connect(int fd, struct sockaddr *addr, socklen_t len)
+{
+     if( connect(fd, addr, len) < 0 )
+         err_sys("connect error");
+}
+
+void Listen(int fd, int backlog)
+{
+     if( listen(fd, backlog) < 0 )
+         err_sys("listen error");
+}
