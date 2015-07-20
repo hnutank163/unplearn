@@ -1,3 +1,4 @@
+i#project unp
 LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/libs)
 ADD_EXECUTABLE(daytimecli daytimecli.c)
 ADD_EXECUTABLE(daytimesvr daytimetcpsvr.c)
