@@ -31,7 +31,9 @@ main(int argc, char ** argv)
         socklen_t len = sizeof(cliaddr );
         connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len );
         ticks = time(NULL);
-        snprintf(buf, sizeof(buf), "%.24s\r\n", ctime(&ticks));
-
+        snprintf(sendline, sizeof(sendline ), "%.24s\r\n", ctime(&ticks));
+        write(connfd, sendline, strlen(sendline));
+        close(connfd);
+    }
 }
 
