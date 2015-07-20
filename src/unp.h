@@ -53,7 +53,7 @@
 #endif
 
 #ifdef	HAVE_SYS_EVENT_H
-# include	<sys/event.h>	/* for kqueue */
+# include	<sys/event.h>	/* for kqueudee */
 #endif
 
 #ifdef	HAVE_STRINGS_H

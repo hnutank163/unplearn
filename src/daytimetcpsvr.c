@@ -30,6 +30,8 @@ main(int argc, char ** argv)
         time_t ticks ;
         socklen_t len = sizeof(cliaddr );
         connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len );
+        printf("recv connection from %s %d\n", inet_ntop(AF_INET, &cliaddr.sin_addr, sendline, sizeof(sendline)),
+                ntohs(cliaddr.sin_port));
         ticks = time(NULL);
         snprintf(sendline, sizeof(sendline ), "%.24s\r\n", ctime(&ticks));
         write(connfd, sendline, strlen(sendline));
