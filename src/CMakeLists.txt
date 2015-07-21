@@ -1,7 +1,7 @@
 #project unp
-LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/libs)
-ADD_EXECUTABLE(daytimecli daytimecli.c)
-ADD_EXECUTABLE(daytimesvr daytimetcpsvr.c)
-TARGET_LINK_LIBRARIES(daytimesvr libunp.a)
-TARGET_LINK_LIBRARIES(daytimecli libunp.a)
+SET(COMM_SRC err.c sock_wrap.c)
+ADD_EXECUTABLE(daytimecli daytimecli.c ${COMM_SRC})
+ADD_EXECUTABLE(daytimesvr daytimetcpsvr.c ${COMM_SRC})
+ADD_EXECUTABLE(echosvr  echosvr.c ${COMM_SRC})
+ADD_EXECUTABLE(echocli echocli.c ${COMM_SRC})
 SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) 

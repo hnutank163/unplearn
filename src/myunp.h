@@ -1,4 +1,5 @@
 #ifndef _MY_UNP_H
+#define _MY_UNP_H
 
 #include <sys/types.h>
 #include <sys/socket.h>  //socket definitions
@@ -50,5 +51,8 @@ int Accept(int fd, struct sockaddr * addr, socklen_t *len);
 void Bind(int fd, struct sockaddr *, socklen_t len);
 void Connect(int fd, struct sockaddr * addr, socklen_t len);
 void Listen(int, int);
-#define _MY_UNP_H
+
+typedef void Sigfunc(int);
+Sigfunc *Signal(int signo, Sigfunc *func);
+
 #endif

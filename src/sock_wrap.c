@@ -145,3 +145,27 @@ void Listen(int fd, int backlog)
      if( listen(fd, backlog) < 0 )
          err_sys("listen error");
 }
+
+Sigfunc *Signal(int signo, Sigfunc *func)
+{
+    struct sigaction act, oact;
+    act.sa_handler = func;
+    sigemptyset(&act.sa_mask);
+    if(signo == SIGALRM)
+    {
+#ifdef SA_INTERRUPT
+        act.sa_flags |= SA_INTERRUPT;
+#endif
+    }
+    else
+    {
+#ifdef SA_RESTART
+        act.sa_flags |= SA_RESTART;
+#endif
+    }
+
+    if(sigaction(signo, &act, &oact) < 0 )
+        return SIG_ERR;
+
+    return oact.sa_handler;
+}
