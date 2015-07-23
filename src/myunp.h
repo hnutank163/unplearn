@@ -35,6 +35,8 @@
 #define MAXLINE 4096
 #define BUFFSIZE 8192
 
+#define MAX(a, b) (a) > (b) ? (a) : (b)
+
 //function when error happend;
 void    err_dump(const char *, ...);
 void    err_msg(const char *, ... );
@@ -51,6 +53,8 @@ int Accept(int fd, struct sockaddr * addr, socklen_t *len);
 void Bind(int fd, struct sockaddr *, socklen_t len);
 void Connect(int fd, struct sockaddr * addr, socklen_t len);
 void Listen(int, int);
+
+int Select(int nfds, fd_set *rfds, fd_set *wfds, fd_set *efds, struct timeval *tva);
 
 typedef void Sigfunc(int);
 Sigfunc *Signal(int signo, Sigfunc *func);

@@ -169,3 +169,13 @@ Sigfunc *Signal(int signo, Sigfunc *func)
 
     return oact.sa_handler;
 }
+
+
+int Select(int nfds, fd_set *rfds, fd_set *wfds, fd_set *efds, struct timeval *tval)
+{
+     int ret ;
+     if( (ret = select(nfds, rfds, wfds, efds, tval)) < 0  )
+         err_sys("select error");
+
+     return ret ;
+}
